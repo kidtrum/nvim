@@ -17,15 +17,15 @@ return {
                 markdown = { "prettier" },
                 lua = { "stylua" },
                 python = { "isort", "black" },
-                c = { "clang-format" },
-                cpp = { "clang-format" },
+                c = { "astyle", "clang-format" },
+                cpp = { "astyle", "clang-format" },
                 cmake = { "cmakelang" },
             },
-            format_on_save = {
-                lsp_fallback = true,
-                async = false,
-                timeout_ms = 1000,
-            },
+            -- format_on_save = {
+            --     lsp_fallback = false,
+            --     async = false,
+            --     timeout_ms = 1000,
+            -- },
         })
 
         vim.keymap.set({ "n", "v" }, "<leader>mp", function()

@@ -1,3 +1,4 @@
+---@diagnostic disable: missing-fields
 return {
     "nvim-treesitter/nvim-treesitter",
     event = { "BufReadPre", "BufNewFile" },
@@ -54,6 +55,7 @@ return {
                 "python",
                 "xml",
                 "comment",
+                "regex",
             },
             incremental_selection = {
                 enable = true,

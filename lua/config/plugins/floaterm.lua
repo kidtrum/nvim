@@ -22,36 +22,37 @@ return {
 
         keymap.set(
             { "n", "t" },
-            "<leader>tt",
+            "<leader>oo",
             "<cmd>FloatermToggle<CR>",
             { silent = true, desc = "Toggle Float terminal" }
         )
         keymap.set(
             { "n", "t" },
-            "<leader>to",
+            "<leader>ot",
             "<cmd>FloatermNew pwsh.exe<CR>",
             { silent = true, desc = "Open new Float terminal" }
         )
         keymap.set(
             { "n", "t" },
-            "<leader>tx",
+            "<leader>ox",
             "<cmd>FloatermKill<CR>:FloatermPrev<CR>",
             { silent = true, desc = "Toggle Float terminal" }
         )
-        keymap.set({ "n", "t" }, "<leader>tn", "<cmd>FloatermNext<CR>", { silent = true, desc = "Next terminal" })
-        keymap.set({ "n", "t" }, "<leader>tp", "<cmd>FloatermPrev<CR>", { silent = true, desc = "Previous terminal" })
-        keymap.set({ "n", "t" }, "<leader>ts", "<cmd>FloatermShow<CR>", { silent = true, desc = "Show terminal" })
+        keymap.set({ "n", "t" }, "<leader>on", "<cmd>FloatermNext<CR>", { silent = true, desc = "Next terminal" })
+        keymap.set({ "n", "t" }, "<leader>op", "<cmd>FloatermPrev<CR>", { silent = true, desc = "Previous terminal" })
+        keymap.set({ "n", "t" }, "<leader>os", "<cmd>FloatermShow<CR>", { silent = true, desc = "Show terminal" })
         keymap.set(
             { "n", "t" },
-            "<leader>tf",
+            "<leader>of",
             "<cmd>FloatermNew --width=0.9 --height=0.9 --position=center --wintype=float pwsh.exe<CR>",
             { silent = true, desc = "Open full screen terminal" }
         )
         keymap.set(
             { "n", "t" },
-            "<leader>tr",
+            "<leader>or",
             "<cmd>FloatermNew --width=0.4 --height=0.9 --position=right --wintype=float pwsh.exe<CR>",
             { silent = true, desc = "Open right position terminal" }
         )
+        keymap.set("t", "<leader>ou", "<C-\\><C-N>", { desc = "Exit terminal mode" })
     end,
 }

@@ -23,7 +23,7 @@ return {
         local lspkind = require("lspkind")
 
         -- loads vscode style snippets from installed plugins (e.g. friendly-snippets)
-        
+
         cmp.setup({
             completion = {
                 completeopt = "menu,menuone,preview,noselect",

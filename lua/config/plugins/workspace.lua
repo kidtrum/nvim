@@ -42,6 +42,11 @@ return {
                 open_pre = {},
                 open = { "SessionRestore" },
             },
+
         })
+
+        local keymap = vim.keymap
+
+        keymap.set("n", "<leader>wa", "<cmd>WorkspacesAdd<CR>", { desc = "Add new workspace for current root dir" })
     end,
 }
