@@ -77,12 +77,30 @@ return {
         vim.fn.sign_define("DapLogPoint", { text = " ", texthl = "DapLogPoint" })
         vim.fn.sign_define("DapStopped", { text = " ", texthl = "DapStopped" })
 
+        -- Define different DAP adapter command
+        local cppdbg_command
+        local codelldb_command
+        local python_adapter
+        local python_command
+
+        if vim.fn.has("win32") then
+            cppdbg_command = vim.fn.stdpath('data') .. "\\mason\\packages\\cpptools\\extension\\debugAdapters\\bin\\OpenDebugAD7.exe"
+            codelldb_command = vim.fn.stdpath('data') .. "\\mason\\packages\\codelldb\\extension\\adapter\\codelldb.exe"
+            python_adapter = vim.fn.stdpath('data') .. "\\mason\\packages\\debugpy\\venv\\Scripts\\python.exe"
+            python_command = "C:\\Program Files\\Python311\\python.exe"
+        else
+            cppdbg_command = vim.fn.stdpath('data') .. "/mason/packages/cpptools/extension/debugAdapters/bin/OpenDebugAD7"
+            codelldb_command = vim.fn.stdpath('data') .. "/mason/packages/codelldb/extension/adapter/codelldb"
+            python_adapter = vim.fn.stdpath('data') .. "/mason/packages/debugpy/venv/Scripts/python"
+            python_command = "python3"
+        end
+
         -- Setup for Dap adapters
         dap.adapters.cppdbg = {
             id = "cppdbg",
             type = "executable",
-            command = "C:\\Users\\a5068511\\AppData\\Local\\nvim-data\\mason\\packages\\cpptools\\extension\\debugAdapters\\bin\\OpenDebugAD7.exe",
-            -- command = "C:/tools/cpptools-win64/extension/debugAdapters/bin/OpenDebugAD7.exe",
+            command = cppdbg_command,
+
             options = {
                 detached = false,
             },
@@ -99,7 +117,8 @@ return {
             port = "13000",
             executable = {
                 -- CHANGE THIS to your path!
-                command = "C:\\Users\\a5068511\\AppData\\Local\\nvim-data\\mason\\packages\\codelldb\\extension\\adapter\\codelldb.exe",
+                -- command = codelldb_command,
+                command = codelldb_command,
                 args = { "--port", "13000" },
 
                 -- On windows you may have to uncomment this:
@@ -124,7 +143,7 @@ return {
             else
                 cb({
                     type = "executable",
-                    command = "C:\\Users\\a5068511\\AppData\\Local\\nvim-data\\mason\\packages\\debugpy\\venv\\Scripts\\python.exe",
+                    command = python_adapter,
                     args = { "-m", "debugpy.adapter" },
                     options = {
                         source_filetype = "python",
@@ -144,7 +163,7 @@ return {
                 -- Options below are for debugpy, see https://github.com/microsoft/debugpy/wiki/Debug-configuration-settings for supported options
 
                 program = "${file}", -- This configuration will launch the current file if used.
-                pythonPath = "C:\\Program Files\\Python311\\python.exe",
+                pythonPath = python_command,
             },
         }
 
