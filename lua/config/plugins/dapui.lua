@@ -101,9 +101,9 @@ return {
             type = "executable",
             command = cppdbg_command,
 
-            options = {
-                detached = false,
-            },
+            -- options = {
+            --     detached = false,
+            -- },
         }
 
         dap.adapters.lldb = {
@@ -122,7 +122,7 @@ return {
                 args = { "--port", "13000" },
 
                 -- On windows you may have to uncomment this:
-                detached = false,
+                -- detached = false,
             },
         }
 
