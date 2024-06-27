@@ -83,7 +83,7 @@ return {
         local python_adapter
         local python_command
 
-        if vim.fn.has("win32") then
+        if vim.fn.has("win32") == 1 then
             cppdbg_command = vim.fn.stdpath('data') .. "\\mason\\packages\\cpptools\\extension\\debugAdapters\\bin\\OpenDebugAD7.exe"
             codelldb_command = vim.fn.stdpath('data') .. "\\mason\\packages\\codelldb\\extension\\adapter\\codelldb.exe"
             python_adapter = vim.fn.stdpath('data') .. "\\mason\\packages\\debugpy\\venv\\Scripts\\python.exe"
