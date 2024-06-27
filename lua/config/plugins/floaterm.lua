@@ -18,6 +18,10 @@ return {
             vim.g[k] = v
         end
 
+        if vim.fn.has("win32") then
+            vim.g["floaterm_shell"] = "pwsh.exe"
+        end
+
         local keymap = vim.keymap -- for conciseness
 
         keymap.set(
@@ -29,7 +33,7 @@ return {
         keymap.set(
             { "n", "t" },
             "<leader>ot",
-            "<cmd>FloatermNew pwsh.exe<CR>",
+            "<cmd>FloatermNew<CR>",
             { silent = true, desc = "Open new Float terminal" }
         )
         keymap.set(
@@ -44,13 +48,13 @@ return {
         keymap.set(
             { "n", "t" },
             "<leader>of",
-            "<cmd>FloatermNew --width=0.9 --height=0.9 --position=center --wintype=float pwsh.exe<CR>",
+            "<cmd>FloatermNew --width=0.9 --height=0.9 --position=center --wintype=float<CR>",
             { silent = true, desc = "Open full screen terminal" }
         )
         keymap.set(
             { "n", "t" },
             "<leader>or",
-            "<cmd>FloatermNew --width=0.4 --height=0.9 --position=right --wintype=float pwsh.exe<CR>",
+            "<cmd>FloatermNew --width=0.4 --height=0.9 --position=right --wintype=float<CR>",
             { silent = true, desc = "Open right position terminal" }
         )
         keymap.set("t", "<leader>ou", "<C-\\><C-N>", { desc = "Exit terminal mode" })
