@@ -22,6 +22,10 @@ return {
 
         local lspkind = require("lspkind")
 
+        local has_words_before = function()
+            local line, col = unpack(vim.api.nvim_win_get_cursor(0))
+            return col ~= 0 and vim.api.nvim_buf_get_lines(0, line - 1, line, true)[1]:sub(col, col):match("%s") == nil
+        end
         -- loads vscode style snippets from installed plugins (e.g. friendly-snippets)
 
         cmp.setup({
@@ -34,17 +38,28 @@ return {
                 end,
             },
             mapping = cmp.mapping.preset.insert({
-                ["<S-Tab>"] = cmp.mapping.select_prev_item(), -- previous suggestion
-                ["<Tab>"] = cmp.mapping.select_next_item(), -- next suggestion
+                ["<C-k>"] = cmp.mapping.select_prev_item(), -- previous suggestion
+                ["<C-j>"] = cmp.mapping.select_next_item(), -- next suggestion
                 ["<C-b>"] = cmp.mapping.scroll_docs(-4),
                 ["<C-f>"] = cmp.mapping.scroll_docs(4),
-                ["<C-n>"] = cmp.mapping.complete(), -- show completion suggestions
+                -- ["<C-n>"] = cmp.mapping.complete(), -- show completion suggestions
+                ["<C-n>"] = cmp.mapping(function(fallback)
+                    if cmp.visible() then
+                        return cmp.select_next_item()
+                    elseif luasnip.expand_or_jumpable() then
+                        vim.fn.feedkeys(vim.api.nvim_replace_termcodes("<Plug>luasnip-expand-or-jump", true, true, true), "")
+                    elseif has_words_before() then
+                        cmp.complete()
+                    else
+                        fallback()
+                    end
+                end, { "i", "n" }),
                 ["<C-e>"] = cmp.mapping.abort(), -- close completion window
                 ["<CR>"] = cmp.mapping.confirm({ select = false }),
             }),
             -- sources for autocompletion
             sources = cmp.config.sources({
-                { name = "nvim_lsp"},
+                { name = "nvim_lsp" },
                 { name = "luasnip" }, -- snippets
                 { name = "buffer" }, -- text within current buffer
                 { name = "path" }, -- file system paths
