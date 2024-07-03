@@ -36,6 +36,7 @@ return {
             keymap.set("n", "<leader>fs", "<cmd>Telescope live_grep<CR>", { desc = "Find string in cwd" })
             keymap.set("n", "<leader>fc", "<cmd>Telescope grep_string<CR>", { desc = "Find string under cursor in cwd" })
             keymap.set("n", "<leader>/", "<cmd>Telescope current_buffer_fuzzy_find<CR>", { desc = "Find string in current buffer"})
+            keymap.set("n", "<leader>fb", "<cmd>Telescope lsp_document_symbols<CR>", { desc = "Find current document symbols" })
         end
         keymap.set("n", "<leader>fs", "<cmd>Telescope workspaces", { desc = "Find workspaces" })
         keymap.set("n", "<leader>ft", "<cmd>TodoTelescope<CR>", { desc = "Find todos" })

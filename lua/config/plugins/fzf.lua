@@ -16,6 +16,7 @@ return {
             keymap.set("n", "<leader>fs", "<cmd>FzfLua live_grep<CR>", { desc = "Find string in cwd" })
             keymap.set("n", "<leader>fc", "<cmd>FzfLua grep_cword<CR>", { desc = "Find string under cursor in cwd" })
             keymap.set("n", "<leader>/", "<cmd>FzfLua blines<CR>", { desc = "Find string in current buffer" })
+            keymap.set("n", "<leader>fb", "<cmd>FzfLua lsp_document_symbols<CR>", { desc = "Find current document symbols" })
         end
     end,
 }
