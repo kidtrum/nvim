@@ -12,6 +12,7 @@ return {
             -- build = "make install_jsregexp",
         },
         "saadparwaiz1/cmp_luasnip", -- for autocompletion
+        "delphinus/cmp-ctags", -- source for text in ctags
         "rafamadriz/friendly-snippets", -- useful snippets
         "onsails/lspkind.nvim", -- vs-code like pictograms
     },
@@ -62,6 +63,14 @@ return {
                 { name = "nvim_lsp" },
                 { name = "luasnip" }, -- snippets
                 { name = "buffer" }, -- text within current buffer
+                {
+                    name = "ctags",
+                    option = {
+                        executable = "ctags",
+                        trigger_characters = { "." },
+                        trigger_characters_ft = { },
+                    },
+                },
                 { name = "path" }, -- file system paths
             }),
 
