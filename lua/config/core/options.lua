@@ -34,3 +34,7 @@ opt.clipboard:append("unnamedplus") -- use system clipboard as default register
 opt.splitright = true -- split vertical window to the right
 opt.splitbelow = true -- split horizontal window to the bottom
 
+if vim.g.neovide then
+    vim.o.guifont = "FantasqueSansM Nerd Font:h10.5"
+    vim.g.neovide_show_border = true
+end
